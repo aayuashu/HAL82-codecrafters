@@ -21,7 +21,7 @@
         </a>
 
         <div class="nav-actions">
-          <a href="./dashboard.html" class="nav-link">Dashboard</a>
+          <a href="dashboard.html" class="nav-link">Dashboard</a>
           <button class="theme-toggle" aria-label="Toggle theme">
             <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
@@ -38,54 +38,626 @@
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           </button>
+          <button id="logout" class="btn logout-btn">Logout</button>
         </div>
       </div>
     </div>
   </nav>
 
-  <section class="dashboard-wrapper">
-    <div class="dashboard-card">
-      <div class="dash-top">
-        <div>
-          <h2 class="dash-title">Investor Home</h2>
-          <p id="status" class="dash-sub">Loading...</p>
+  <div class="investor-dashboard">
+    <!-- Header Section -->
+    <header class="investor-header">
+      <div class="header-content">
+        <div class="header-left">
+          <h1>Investor Dashboard</h1>
+          <p id="status">Welcome back! Explore investment opportunities.</p>
         </div>
-        <button id="logout" class="btn logout-btn">Logout</button>
-      </div>
-
-      <div class="profile-box">
-        <img id="avatar" alt="avatar" style="display:none;" />
-        <div class="profile-meta">
-          <div id="name" class="name">—</div>
-          <div id="email" class="email">—</div>
-          <div id="role" class="provider">—</div>
+        <div class="header-right">
+          <div class="profile-mini">
+            <div class="profile-avatar" id="avatarInitial">--</div>
+            <div class="profile-info">
+              <span id="name" class="profile-name">Loading...</span>
+              <span id="email" class="profile-email">--</span>
+            </div>
+          </div>
         </div>
       </div>
+    </header>
 
-      <div class="dashboard-grid">
-        <div class="dash-panel">
-          <h3>Investor tools</h3>
-          <p>Browse startups, evaluate pitches, save watchlists, and contact founders.</p>
-          <div class="actions">
-            <a class="action" href="#">Explore Startups</a>
-            <a class="action" href="#">Saved Deals</a>
-            <a class="action" href="#">Messages</a>
+    <!-- Dashboard Tabs -->
+    <div class="dashboard-tabs">
+      <button class="tab-btn active" data-tab="pitches">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        Project Pitches
+      </button>
+      <button class="tab-btn" data-tab="recommended">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        Recommended
+      </button>
+      <button class="tab-btn" data-tab="saved">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Saved
+      </button>
+      <button class="tab-btn" data-tab="preferences">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        Preferences
+      </button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      
+      <!-- Pitches Tab -->
+      <div class="tab-panel active" id="pitches-panel">
+        <!-- Filter Section -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <h3>Filter Projects</h3>
+            <button class="filter-reset" id="resetFilters">Reset All</button>
+          </div>
+          <div class="filter-grid">
+            <div class="filter-group">
+              <label>Industry</label>
+              <select id="filterIndustry">
+                <option value="">All Industries</option>
+                <option value="tech">Technology</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="fintech">FinTech</option>
+                <option value="edtech">EdTech</option>
+                <option value="ecommerce">E-Commerce</option>
+                <option value="cleantech">Clean Tech</option>
+                <option value="ai">AI & ML</option>
+                <option value="saas">SaaS</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label>Funding Stage</label>
+              <select id="filterStage">
+                <option value="">All Stages</option>
+                <option value="pre-seed">Pre-Seed</option>
+                <option value="seed">Seed</option>
+                <option value="series-a">Series A</option>
+                <option value="series-b">Series B+</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label>Risk Level</label>
+              <select id="filterRisk">
+                <option value="">All Levels</option>
+                <option value="low">Low Risk</option>
+                <option value="medium">Medium Risk</option>
+                <option value="high">High Risk</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label>Funding Goal</label>
+              <select id="filterGoal">
+                <option value="">Any Amount</option>
+                <option value="0-100k">Under $100K</option>
+                <option value="100k-500k">$100K - $500K</option>
+                <option value="500k-1m">$500K - $1M</option>
+                <option value="1m+">$1M+</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchPitches" placeholder="Search startups by name or keyword...">
           </div>
         </div>
 
-        <div class="dash-panel">
-          <h3>Quick info</h3>
-          <div class="info">
-            <div class="info-row"><span>Access</span><b>Full Platform</b></div>
-            <div class="info-row"><span>Role</span><b>INVESTOR</b></div>
+        <!-- Pitch Gallery -->
+        <div class="pitch-gallery" id="pitchGallery">
+          <!-- Sample Pitch Cards -->
+          <div class="pitch-card" data-industry="tech" data-stage="seed" data-risk="medium">
+            <div class="pitch-header">
+              <div class="pitch-tag tech">Technology</div>
+              <button class="bookmark-btn" title="Save">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
+            </div>
+            <h3 class="pitch-title">EcoTech Solutions</h3>
+            <p class="pitch-category">Clean Energy & Sustainability</p>
+            <p class="pitch-description">AI-powered energy optimization platform reducing carbon footprint for commercial buildings by 40%.</p>
+            <div class="pitch-meta">
+              <span class="meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                $500K Goal
+              </span>
+              <span class="meta-item stage-badge seed">Seed</span>
+            </div>
+            <div class="pitch-progress">
+              <div class="progress-info">
+                <span>$320K raised</span>
+                <span>64%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 64%"></div>
+              </div>
+            </div>
+            <div class="pitch-actions">
+              <button class="btn btn-view">View Details</button>
+              <button class="btn btn-contact">Contact</button>
+            </div>
+          </div>
+
+          <div class="pitch-card" data-industry="healthcare" data-stage="series-a" data-risk="low">
+            <div class="pitch-header">
+              <div class="pitch-tag healthcare">Healthcare</div>
+              <button class="bookmark-btn" title="Save">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
+            </div>
+            <h3 class="pitch-title">MediConnect Pro</h3>
+            <p class="pitch-category">Digital Health Platform</p>
+            <p class="pitch-description">Blockchain-secured telemedicine platform with AI-assisted diagnostics and patient record management.</p>
+            <div class="pitch-meta">
+              <span class="meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                $2M Goal
+              </span>
+              <span class="meta-item stage-badge series-a">Series A</span>
+            </div>
+            <div class="pitch-progress">
+              <div class="progress-info">
+                <span>$1.4M raised</span>
+                <span>70%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="pitch-actions">
+              <button class="btn btn-view">View Details</button>
+              <button class="btn btn-contact">Contact</button>
+            </div>
+          </div>
+
+          <div class="pitch-card" data-industry="fintech" data-stage="pre-seed" data-risk="high">
+            <div class="pitch-header">
+              <div class="pitch-tag fintech">FinTech</div>
+              <button class="bookmark-btn" title="Save">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
+            </div>
+            <h3 class="pitch-title">PayFlow</h3>
+            <p class="pitch-category">Payment Infrastructure</p>
+            <p class="pitch-description">Next-generation payment infrastructure for emerging markets with instant cross-border settlements.</p>
+            <div class="pitch-meta">
+              <span class="meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                $250K Goal
+              </span>
+              <span class="meta-item stage-badge pre-seed">Pre-Seed</span>
+            </div>
+            <div class="pitch-progress">
+              <div class="progress-info">
+                <span>$80K raised</span>
+                <span>32%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 32%"></div>
+              </div>
+            </div>
+            <div class="pitch-actions">
+              <button class="btn btn-view">View Details</button>
+              <button class="btn btn-contact">Contact</button>
+            </div>
+          </div>
+
+          <div class="pitch-card" data-industry="ai" data-stage="seed" data-risk="medium">
+            <div class="pitch-header">
+              <div class="pitch-tag ai">AI & ML</div>
+              <button class="bookmark-btn" title="Save">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
+            </div>
+            <h3 class="pitch-title">NeuralVision</h3>
+            <p class="pitch-category">Computer Vision</p>
+            <p class="pitch-description">Enterprise computer vision solution for quality control in manufacturing with 99.7% accuracy.</p>
+            <div class="pitch-meta">
+              <span class="meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                $750K Goal
+              </span>
+              <span class="meta-item stage-badge seed">Seed</span>
+            </div>
+            <div class="pitch-progress">
+              <div class="progress-info">
+                <span>$450K raised</span>
+                <span>60%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%"></div>
+              </div>
+            </div>
+            <div class="pitch-actions">
+              <button class="btn btn-view">View Details</button>
+              <button class="btn btn-contact">Contact</button>
+            </div>
+          </div>
+
+          <div class="pitch-card" data-industry="edtech" data-stage="seed" data-risk="low">
+            <div class="pitch-header">
+              <div class="pitch-tag edtech">EdTech</div>
+              <button class="bookmark-btn" title="Save">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
+            </div>
+            <h3 class="pitch-title">LearnPath AI</h3>
+            <p class="pitch-category">Adaptive Learning</p>
+            <p class="pitch-description">Personalized learning platform using AI to adapt curriculum based on student performance patterns.</p>
+            <div class="pitch-meta">
+              <span class="meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                $400K Goal
+              </span>
+              <span class="meta-item stage-badge seed">Seed</span>
+            </div>
+            <div class="pitch-progress">
+              <div class="progress-info">
+                <span>$280K raised</span>
+                <span>70%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 70%"></div>
+              </div>
+            </div>
+            <div class="pitch-actions">
+              <button class="btn btn-view">View Details</button>
+              <button class="btn btn-contact">Contact</button>
+            </div>
+          </div>
+
+          <div class="pitch-card" data-industry="saas" data-stage="series-a" data-risk="low">
+            <div class="pitch-header">
+              <div class="pitch-tag saas">SaaS</div>
+              <button class="bookmark-btn" title="Save">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </button>
+            </div>
+            <h3 class="pitch-title">CloudOps Pro</h3>
+            <p class="pitch-category">DevOps Automation</p>
+            <p class="pitch-description">All-in-one DevOps platform automating CI/CD pipelines, monitoring, and infrastructure management.</p>
+            <div class="pitch-meta">
+              <span class="meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                $1.5M Goal
+              </span>
+              <span class="meta-item stage-badge series-a">Series A</span>
+            </div>
+            <div class="pitch-progress">
+              <div class="progress-info">
+                <span>$1.2M raised</span>
+                <span>80%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="pitch-actions">
+              <button class="btn btn-view">View Details</button>
+              <button class="btn btn-contact">Contact</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended Tab -->
+      <div class="tab-panel" id="recommended-panel">
+        <div class="recommended-header">
+          <div class="recommended-info">
+            <h3>Recommended For You</h3>
+            <p>Based on your investment preferences and interests</p>
+          </div>
+          <a href="#" class="update-prefs" data-tab="preferences">Update Preferences</a>
+        </div>
+        <div class="pitch-gallery" id="recommendedGallery">
+          <div class="empty-state">
+            <div class="empty-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h4>Set Your Preferences</h4>
+            <p>Configure your investment interests in the Preferences tab to see personalized recommendations.</p>
+            <button class="btn" data-tab="preferences">Go to Preferences</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved Tab -->
+      <div class="tab-panel" id="saved-panel">
+        <div class="saved-header">
+          <h3>Saved Projects</h3>
+          <p>Track your bookmarked startup pitches</p>
+        </div>
+        <div class="pitch-gallery" id="savedGallery">
+          <div class="empty-state">
+            <div class="empty-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h4>No Saved Projects</h4>
+            <p>Click the bookmark icon on any pitch to save it for later review.</p>
+            <button class="btn" data-tab="pitches">Browse Projects</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferences Tab -->
+      <div class="tab-panel" id="preferences-panel">
+        <div class="preferences-container">
+          <div class="pref-section">
+            <h3>Investment Interest Profile</h3>
+            <p>Configure your preferences to get personalized startup recommendations.</p>
+          </div>
+
+          <div class="pref-form">
+            <div class="pref-group">
+              <label>Industries of Interest</label>
+              <p class="pref-hint">Select all industries you're interested in investing in</p>
+              <div class="checkbox-grid">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="industry" value="tech">
+                  <span class="checkbox-label">Technology</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="industry" value="healthcare">
+                  <span class="checkbox-label">Healthcare</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="industry" value="fintech">
+                  <span class="checkbox-label">FinTech</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="industry" value="edtech">
+                  <span class="checkbox-label">EdTech</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="industry" value="ecommerce">
+                  <span class="checkbox-label">E-Commerce</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="industry" value="cleantech">
+                  <span class="checkbox-label">Clean Tech</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="industry" value="ai">
+                  <span class="checkbox-label">AI & ML</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="industry" value="saas">
+                  <span class="checkbox-label">SaaS</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="pref-group">
+              <label>Preferred Funding Stages</label>
+              <p class="pref-hint">Select the funding stages you typically invest in</p>
+              <div class="checkbox-grid">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="stage" value="pre-seed">
+                  <span class="checkbox-label">Pre-Seed</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="stage" value="seed">
+                  <span class="checkbox-label">Seed</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="stage" value="series-a">
+                  <span class="checkbox-label">Series A</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="stage" value="series-b">
+                  <span class="checkbox-label">Series B+</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="pref-group">
+              <label>Risk Tolerance</label>
+              <p class="pref-hint">Your comfort level with investment risk</p>
+              <div class="radio-group">
+                <label class="radio-item">
+                  <input type="radio" name="risk" value="low">
+                  <span class="radio-label">Conservative (Low Risk)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="risk" value="medium" checked>
+                  <span class="radio-label">Balanced (Medium Risk)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="risk" value="high">
+                  <span class="radio-label">Aggressive (High Risk)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="pref-group">
+              <label>Investment Range</label>
+              <p class="pref-hint">Typical amount you invest per deal</p>
+              <select id="investmentRange">
+                <option value="">Select range</option>
+                <option value="10k-50k">$10K - $50K</option>
+                <option value="50k-100k">$50K - $100K</option>
+                <option value="100k-250k">$100K - $250K</option>
+                <option value="250k-500k">$250K - $500K</option>
+                <option value="500k+">$500K+</option>
+              </select>
+            </div>
+
+            <div class="pref-actions">
+              <button class="btn" id="savePreferences">Save Preferences</button>
+              <button class="btn btn-secondary" id="resetPreferences">Reset to Default</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <div id="toast" class="toast"></div>
   <script type="module" src="../js/theme.js"></script>
   <script type="module" src="../js/role-dashboard.js"></script>
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(tabId + '-panel').classList.add('active');
+      });
+    });
+
+    // Handle data-tab buttons
+    document.querySelectorAll('[data-tab]').forEach(el => {
+      if (!el.classList.contains('tab-btn')) {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const tabId = el.dataset.tab;
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+          document.getElementById(tabId + '-panel').classList.add('active');
+        });
+      }
+    });
+
+    // Filter functionality
+    const filterSelects = ['filterIndustry', 'filterStage', 'filterRisk', 'filterGoal'];
+    const searchInput = document.getElementById('searchPitches');
+    const pitchCards = document.querySelectorAll('#pitchGallery .pitch-card');
+
+    function applyFilters() {
+      const industry = document.getElementById('filterIndustry').value;
+      const stage = document.getElementById('filterStage').value;
+      const risk = document.getElementById('filterRisk').value;
+      const search = searchInput.value.toLowerCase();
+
+      pitchCards.forEach(card => {
+        const cardIndustry = card.dataset.industry;
+        const cardStage = card.dataset.stage;
+        const cardRisk = card.dataset.risk;
+        const cardText = card.textContent.toLowerCase();
+
+        const matchIndustry = !industry || cardIndustry === industry;
+        const matchStage = !stage || cardStage === stage;
+        const matchRisk = !risk || cardRisk === risk;
+        const matchSearch = !search || cardText.includes(search);
+
+        card.style.display = matchIndustry && matchStage && matchRisk && matchSearch ? '' : 'none';
+      });
+    }
+
+    filterSelects.forEach(id => {
+      document.getElementById(id)?.addEventListener('change', applyFilters);
+    });
+    searchInput?.addEventListener('input', applyFilters);
+
+    document.getElementById('resetFilters')?.addEventListener('click', () => {
+      filterSelects.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      searchInput.value = '';
+      applyFilters();
+    });
+
+    // Bookmark functionality
+    document.querySelectorAll('.bookmark-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        btn.querySelector('svg').style.fill = btn.classList.contains('active') ? 'currentColor' : 'none';
+      });
+    });
+
+    // Save preferences
+    document.getElementById('savePreferences')?.addEventListener('click', () => {
+      const industries = Array.from(document.querySelectorAll('input[name="industry"]:checked')).map(i => i.value);
+      const stages = Array.from(document.querySelectorAll('input[name="stage"]:checked')).map(s => s.value);
+      const risk = document.querySelector('input[name="risk"]:checked')?.value;
+      const range = document.getElementById('investmentRange')?.value;
+
+      localStorage.setItem('investorPrefs', JSON.stringify({ industries, stages, risk, range }));
+      
+      // Show toast
+      const toast = document.getElementById('toast');
+      toast.textContent = 'Preferences saved successfully!';
+      toast.classList.add('show', 'success');
+      setTimeout(() => toast.classList.remove('show', 'success'), 3000);
+    });
+
+    // Load saved preferences
+    const savedPrefs = JSON.parse(localStorage.getItem('investorPrefs') || '{}');
+    if (savedPrefs.industries) {
+      savedPrefs.industries.forEach(ind => {
+        const checkbox = document.querySelector(`input[name="industry"][value="${ind}"]`);
+        if (checkbox) checkbox.checked = true;
+      });
+    }
+    if (savedPrefs.stages) {
+      savedPrefs.stages.forEach(stage => {
+        const checkbox = document.querySelector(`input[name="stage"][value="${stage}"]`);
+        if (checkbox) checkbox.checked = true;
+      });
+    }
+    if (savedPrefs.risk) {
+      const radio = document.querySelector(`input[name="risk"][value="${savedPrefs.risk}"]`);
+      if (radio) radio.checked = true;
+    }
+    if (savedPrefs.range) {
+      document.getElementById('investmentRange').value = savedPrefs.range;
+    }
+  </script>
 </body>
 </html>

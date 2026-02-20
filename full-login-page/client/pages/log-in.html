@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Sign Up - UdyamTank</title>
+  <title>Login - UdyamTank</title>
   <link rel="stylesheet" href="../assets/css/styles.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -21,7 +21,7 @@
         </a>
 
         <div class="nav-actions">
-          <a href="log-in.html" class="nav-link">Login</a>
+          <a href="sign-up.html" class="nav-link">Sign Up</a>
           <button class="theme-toggle" aria-label="Toggle theme">
             <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
@@ -47,27 +47,18 @@
   <div class="auth-section">
     <div class="auth-container">
       <div class="auth-header">
-        <h1>Join UdyamTank</h1>
-        <p>Create your account in seconds</p>
+        <h1>Welcome Back</h1>
+        <p>Sign in to your UdyamTank account</p>
       </div>
 
       <section class="card auth-card">
-        <h2>Sign Up</h2>
-        <p>Create account using email/password or Google.</p>
+        <h2>Login</h2>
+        <p>Login with email/password or continue with Google.</p>
 
-        <input id="full_name" type="text" placeholder="Full name (optional)" />
-        <input id="email" type="email" placeholder="Email address" style="margin-top: 8px;" />
-        <input id="password" type="password" placeholder="Password (min 6 chars)" style="margin-top: 8px;" />
+        <input id="email" type="email" placeholder="Email address" />
+        <input id="password" type="password" placeholder="Password" style="margin-top: 8px;" />
 
-        <select id="role">
-          <option value="" selected disabled>Select account type</option>
-          <option value="INVESTOR">Investor</option>
-          <option value="STARTUP">Startup Personnel</option>
-          <option value="INTERN_SEEKER">Intern Seeker</option>
-          <option value="INFLUENCER">Influencer</option>
-        </select>
-
-        <button id="signupBtn" class="btn">Create Account</button>
+        <button id="loginBtn" class="btn">Login</button>
 
         <div class="sep">OR</div>
 
@@ -76,7 +67,7 @@
         </div>
 
         <div class="link link-center">
-          Already have an account? <a href="sign-in.html">Login</a>
+          New here? <a href="sign-up.html">Create an account</a>
         </div>
       </section>
 
@@ -95,6 +86,6 @@
   <div id="toast" class="toast"></div>
 
   <script type="module" src="../js/theme.js"></script>
-  <script type="module" src="../js/sign-up.js"></script>
+  <script type="module" src="../js/log-in.js"></script>
 </body>
 </html>
