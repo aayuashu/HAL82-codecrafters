@@ -3,56 +3,65 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Sign Up</title>
+  <title>Sign Up • UdyamTank</title>
   <link rel="stylesheet" href="../assets/css/styles.css"/>
 </head>
-<body>
-  <div class="shell">
-    <section class="hero">
-      <div class="badge">✨ Create account • 10s setup</div>
-      <h1>Join the platform.<br/>Start instantly.</h1>
-      <p>Create an account using email/password or Google.</p>
 
-      <div class="grid">
-        <div class="tile"><b>Investor</b><span>Access all platform features</span></div>
-        <div class="tile"><b>Startup</b><span>Build & manage startup profile</span></div>
-        <div class="tile"><b>Intern Seeker</b><span>Find internships and apply</span></div>
-        <div class="tile"><b>Influencer</b><span>Promote, collaborate, monetize</span></div>
+<body class="auth">
+
+  <!-- NAVBAR -->
+  <header class="auth-nav">
+    <div class="auth-nav-inner">
+      <a class="auth-brand" href="../index.html">
+        <img src="../../logo.jpg" width="100" height="100">
+        <span>UdyamTank</span>
+      </a>
+
+      <div class="auth-nav-actions">
+        <a class="auth-nav-link" href="sign-in.html">Login</a>
+        <button class="auth-icon-btn" type="button" aria-label="Toggle theme">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <h1 class="auth-title">Join UdyamTank</h1>
+    <p class="auth-sub">Create your account</p>
+
+    <section class="auth-card">
+      <h2 class="auth-card-title">Sign Up</h2>
+      <!-- <p class="auth-card-desc">Create account using email/password or Google.</p> -->
+
+      <div class="auth-form">
+        <input id="full_name" type="text" placeholder="Full name" />
+        <input id="email" type="email" placeholder="Email address" />
+        <input id="password" type="password" placeholder="Password (min 6 chars)" />
+
+        <select id="role">
+          <option value="" selected disabled>Select account type</option>
+          <option value="startup">Startup</option>
+          <option value="investor">Investor</option>
+          <option value="intern">Intern</option>
+          <option value="influencer">Influencer</option>
+        </select>
+
+        <button id="signupBtn" class="auth-btn">Create Account</button>
+
+        <!-- Optional Google -->
+        <div class="auth-google-wrap">
+          <div id="googleBtn"></div>
+        </div>
+
+        <div class="auth-footer">
+          Already have an account? <a href="sign-in.html">Login</a>
+        </div>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Sign Up</h2>
-      <p>Create account using email/password or Google.</p>
-
-      <input id="full_name" type="text" placeholder="Full name (optional)" />
-      <input id="email" type="email" placeholder="Email address" />
-      <input id="password" type="password" placeholder="Password (min 6 chars)" />
-
-      <select id="role">
-        <option value="" selected disabled>Select account type</option>
-        <option value="INVESTOR">Investor</option>
-        <option value="STARTUP">Startup Personnel</option>
-        <option value="INTERN_SEEKER">Intern Seeker</option>
-        <option value="INFLUENCER">Influencer</option>
-      </select>
-
-      <button id="signupBtn" class="btn">Create Account</button>
-
-      <div class="sep">OR</div>
-
-      <div class="google-wrap">
-        <div id="googleBtn"></div>
-      </div>
-
-      <div class="link link-center">
-        Already have an account? <a href="../index.html">Login</a>
-      </div>
-    </section>
-  </div>
+    <a class="auth-back" href="../index.html">← Back to Home</a>
+  </main>
 
   <div id="toast" class="toast"></div>
-
   <script type="module" src="../js/sign-up.js"></script>
 </body>
 </html>
