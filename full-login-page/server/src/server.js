@@ -9,7 +9,8 @@ const adminRoutes = require("./routes/admin.routes");
 
 const app = express();
 
-app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }));
+// app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }));
+app.use(cors({ origin: [CLIENT_ORIGIN, "http://127.0.0.1:5500"], credentials: true }));
 app.use(express.json());
 
 app.get("/health", (req, res) => res.json({ ok: true }));

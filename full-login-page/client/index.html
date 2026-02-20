@@ -3,46 +3,144 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Secure Login</title>
+  <title>Secure Login - UdyamTank</title>
   <link rel="stylesheet" href="assets/css/styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
-  <div class="shell">
-    <section class="hero">
-      <div class="badge">🔒 Secure Hack-a-lite 3.0</div>
-      <h1>Welcome back.<br/>Login in seconds.</h1>
+<body class="auth-body">
+  <!-- Navigation -->
+  <nav class="navigation">
+    <div class="nav-container">
+      <div class="nav-content">
+        <a href="index.html" class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+            <polyline points="16 7 22 7 22 13"></polyline>
+          </svg>
+          <span class="logo-text">UdyamTank</span>
+        </a>
 
-      <div class="grid">
-        <div class="tile"><b>Google Sign-In</b><span>Trusted identity + quick onboarding</span></div>
-        <div class="tile"><b>JWT Session</b><span>Simple secure API access</span></div>
-        <div class="tile"><b>PostgreSQL</b><span>Stores user profile + role</span></div>
-        <div class="tile"><b>RBAC</b><span>4 roles + admin control</span></div>
+        <div class="nav-actions">
+          <a href="pages/sign-up.html" class="nav-link">Sign Up</a>
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
       </div>
-    </section>
+    </div>
+  </nav>
 
-    <section class="card">
-      <h2>Login</h2>
-      <p>Login with email/password or continue with Google.</p>
-
-      <input id="email" type="email" placeholder="Email address" />
-      <input id="password" type="password" placeholder="Password" />
-
-      <button id="loginBtn" class="btn">Login</button>
-
-      <div class="sep">OR</div>
-
-      <div class="google-wrap">
-        <div id="googleBtn"></div>
+  <!-- Auth Section -->
+  <div class="auth-section">
+    <div class="auth-container">
+      <div class="auth-header">
+        <h1>Welcome to UdyamTank</h1>
+        <p>Connect startups with investors</p>
       </div>
 
-      <div class="link link-center">
-        New here? <a href="pages/sign-up.html">Create an account</a>
+      <section class="card auth-card">
+        <h2>Login</h2>
+        <p>Login with email/password or continue with Google.</p>
+
+        <input id="email" type="email" placeholder="Email address" />
+        <input id="password" type="password" placeholder="Password" style="margin-top: 8px;" />
+
+        <button id="loginBtn" class="btn">Login</button>
+
+        <div class="sep">OR</div>
+
+        <div class="google-wrap">
+          <div id="googleBtn"></div>
+        </div>
+
+        <div class="link link-center">
+          New here? <a href="pages/sign-up.html">Create an account</a>
+        </div>
+      </section>
+
+      <div class="scroll-indicator">
+        <span>Learn more</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
       </div>
-    </section>
+    </div>
   </div>
+
+  <!-- About/Landing Section -->
+  <section class="landing-section">
+    <div class="landing-container">
+      <div class="landing-content">
+        <h2>About UdyamTank</h2>
+        <p class="landing-description">
+          UdyamTank is a platform where innovative startups connect with potential investors. 
+          Startups can pitch their ideas, showcase their vision, and gain funding opportunities, 
+          while investors can explore promising ventures and support the next generation of entrepreneurs.
+        </p>
+        
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <h3>For Startups</h3>
+            <p>Pitch your innovative ideas, create compelling presentations, and connect with investors ready to fund the next big thing.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h3>For Investors</h3>
+            <p>Discover promising ventures, review detailed pitches, and invest in the entrepreneurs shaping tomorrow's industries.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3>Community</h3>
+            <p>Join a thriving ecosystem of innovators, mentors, and industry experts collaborating to drive success.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div id="toast" class="toast"></div>
 
+  <script type="module" src="js/theme.js"></script>
   <script type="module" src="js/sign-in.js"></script>
+  <script>
+    // Scroll to landing section when scroll indicator is clicked
+    document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+      document.querySelector('.landing-section')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
