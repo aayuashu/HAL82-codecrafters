@@ -48,13 +48,19 @@ export async function fetchMe() {
 }
 export function redirectByRole(role) {
   const map = {
-    INVESTOR: "../pages/investor.html",
-    STARTUP: "../pages/startup.html",
-    INTERN_SEEKER: "../pages/intern.html",
-    INFLUENCER: "../pages/influencer.html",
-    ADMIN: "../pages/admin.html",
+    INVESTOR: "investor.html",
+    STARTUP: "startup.html",
+    INTERN_SEEKER: "intern.html",
+    INFLUENCER: "influencer.html",
+    ADMIN: "admin.html"
   };
-  return map[role] || "../pages/intern.html";
+
+  const file = map[role] || "intern.html";
+
+  // Always go to pages folder on the *frontend host*
+  // If we are already in /pages, use just filename
+  const inPages = location.pathname.includes("/pages/");
+  return inPages ? `./${file}` : `pages/${file}`;
 }
 export function redirectByRolelogin(role) {
   const map = {
