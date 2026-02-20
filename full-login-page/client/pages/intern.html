@@ -3,9 +3,417 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Intern Seeker Dashboard - UdyamTank</title>
+  <title>Intern Dashboard - UdyamTank</title>
   <link rel="stylesheet" href="../assets/css/styles.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Intern Dashboard Styles */
+    .intern-dashboard {
+      max-width: 900px;
+      padding: 100px 24px 60px;
+      margin: 0 auto;
+    }
+
+    /* Profile Header */
+    .intern-header {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .intern-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--cyan-500));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .intern-info {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .intern-name {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+
+    .intern-title {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin: 0 0 8px;
+    }
+
+    .intern-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .meta-item svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.6;
+    }
+
+    .availability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--green-100), transparent);
+      border: 1px solid var(--green-400);
+      color: var(--green-600);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .availability-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-600);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Section Card */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--stroke);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .skill-dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--stroke);
+    }
+
+    .skill-dot.filled {
+      background: var(--accent);
+    }
+
+    .tools-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tool-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--stroke);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .tool-icon:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 700px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .project-img {
+      height: 100px;
+      background: linear-gradient(135deg, rgba(124,92,255,.2), rgba(34,197,94,.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-img svg {
+      width: 32px;
+      height: 32px;
+      color: var(--accent);
+      opacity: 0.5;
+    }
+
+    .project-info {
+      padding: 14px;
+    }
+
+    .project-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+
+    .project-tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: var(--bg-primary);
+      border: 1px solid var(--stroke);
+      color: var(--text-muted);
+    }
+
+    /* Experience */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .exp-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+
+    .exp-item:hover {
+      border-color: var(--accent);
+    }
+
+    .exp-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .exp-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .exp-icon.work {
+      background: var(--blue-100);
+      color: var(--blue-600);
+    }
+
+    .exp-icon.cert {
+      background: var(--purple-100);
+      color: var(--purple-600);
+    }
+
+    .exp-icon.hack {
+      background: var(--cyan-100);
+      color: var(--cyan-600);
+    }
+
+    .exp-details {
+      flex: 1;
+    }
+
+    .exp-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 2px;
+    }
+
+    .exp-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .exp-date {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Contact Panel */
+    .contact-panel {
+      background: linear-gradient(135deg, rgba(124,92,255,.1), rgba(34,197,94,.08));
+      border: 1px solid rgba(124,92,255,.2);
+      border-radius: var(--r);
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .contact-info h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+
+    .contact-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .response-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-600);
+    }
+
+    .invite-btn {
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 15px;
+      background: linear-gradient(135deg, var(--accent), rgba(124,92,255,.8));
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .invite-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(124,92,255,.4);
+    }
+
+    .invite-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .intern-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .intern-meta {
+        justify-content: center;
+      }
+      .contact-panel {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body class="has-nav">
   <!-- Navigation -->
@@ -43,46 +451,174 @@
     </div>
   </nav>
 
-  <section class="dashboard-wrapper">
-    <div class="dashboard-card">
-      <div class="dash-top">
-        <div>
-          <h2 class="dash-title">Intern Seeker Home</h2>
-          <p id="status" class="dash-sub">Loading...</p>
+  <main class="intern-dashboard">
+    <!-- 1. Profile Header -->
+    <header class="intern-header">
+      <div class="intern-avatar">AS</div>
+      <div class="intern-info">
+        <h1 class="intern-name">Aanya Sharma</h1>
+        <p class="intern-title">Product Design & Frontend Development</p>
+        <div class="intern-meta">
+          <span class="meta-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            IIT Bombay
+          </span>
+          <span class="meta-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Mumbai
+          </span>
+          <span class="availability-badge">Open to Internship</span>
         </div>
-        <button id="logout" class="btn logout-btn">Logout</button>
       </div>
+    </header>
 
-      <div class="profile-box">
-        <img id="avatar" alt="avatar" style="display:none;" />
-        <div class="profile-meta">
-          <div id="name" class="name">—</div>
-          <div id="email" class="email">—</div>
-          <div id="role" class="provider">—</div>
-        </div>
+    <!-- 2. Skills Summary -->
+    <section class="section-card">
+      <p class="section-label">Skills</p>
+      <div class="skills-grid">
+        <span class="skill-tag">
+          React
+          <span class="skill-dots">
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot"></span>
+          </span>
+        </span>
+        <span class="skill-tag">
+          UI Design
+          <span class="skill-dots">
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+          </span>
+        </span>
+        <span class="skill-tag">
+          Python
+          <span class="skill-dots">
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot"></span>
+            <span class="skill-dot"></span>
+          </span>
+        </span>
+        <span class="skill-tag">
+          TypeScript
+          <span class="skill-dots">
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot filled"></span>
+            <span class="skill-dot"></span>
+          </span>
+        </span>
       </div>
+      <p class="section-label" style="margin-top: 8px;">Tools</p>
+      <div class="tools-row">
+        <div class="tool-icon">Figma</div>
+        <div class="tool-icon">Git</div>
+        <div class="tool-icon">VS</div>
+        <div class="tool-icon">Node</div>
+        <div class="tool-icon">AWS</div>
+      </div>
+    </section>
 
-      <div class="dashboard-grid">
-        <div class="dash-panel">
-          <h3>Intern seeker tools</h3>
-          <p>Find internships, build your profile, and track applications.</p>
-          <div class="actions">
-            <a class="action" href="#">Search Internships</a>
-            <a class="action" href="#">My Applications</a>
-            <a class="action" href="#">My Profile</a>
+    <!-- 3. Project Highlights -->
+    <section class="section-card">
+      <p class="section-label">Projects</p>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <div class="project-info">
+            <p class="project-name">TaskFlow App</p>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Firebase</span>
+            </div>
           </div>
         </div>
-
-        <div class="dash-panel">
-          <h3>Quick info</h3>
-          <div class="info">
-            <div class="info-row"><span>Role</span><b>INTERN_SEEKER</b></div>
-            <div class="info-row"><span>Status</span><b>Active</b></div>
+        <div class="project-card">
+          <div class="project-img" style="background: linear-gradient(135deg, rgba(34,197,94,.2), rgba(6,182,212,.15));">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <div class="project-info">
+            <p class="project-name">EcoTrack</p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">ML</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img" style="background: linear-gradient(135deg, rgba(239,68,68,.15), rgba(249,115,22,.15));">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="project-info">
+            <p class="project-name">Portfolio v2</p>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Tailwind</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- 4. Experience Snapshot -->
+    <section class="section-card">
+      <p class="section-label">Experience</p>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-icon work">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div class="exp-details">
+            <p class="exp-title">UI/UX Intern</p>
+            <p class="exp-sub">Razorpay</p>
+          </div>
+          <span class="exp-date">Summer 2025</span>
+        </div>
+        <div class="exp-item">
+          <div class="exp-icon cert">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div class="exp-details">
+            <p class="exp-title">Google UX Certificate</p>
+            <p class="exp-sub">Coursera</p>
+          </div>
+          <span class="exp-date">2024</span>
+        </div>
+        <div class="exp-item">
+          <div class="exp-icon hack">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="exp-details">
+            <p class="exp-title">HackMIT Finalist</p>
+            <p class="exp-sub">Top 10 Teams</p>
+          </div>
+          <span class="exp-date">2024</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Contact Panel -->
+    <section class="contact-panel">
+      <div class="contact-info">
+        <h3>Interested in collaborating?</h3>
+        <p><span class="response-dot"></span> Usually responds within 24 hours</p>
+      </div>
+      <button class="invite-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        Invite to Internship
+      </button>
+    </section>
+  </main>
 
   <div id="toast" class="toast"></div>
   <script type="module" src="../js/theme.js"></script>
