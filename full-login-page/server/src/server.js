@@ -9,7 +9,9 @@ const adminRoutes = require("./routes/admin.routes");
 
 const app = express();
 
-app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }));
+app.use(
+  cors({ origin: [CLIENT_ORIGIN, "http://127.0.0.1:5500"], credentials: true }),
+);
 app.use(express.json());
 
 app.get("/health", (req, res) => res.json({ ok: true }));
@@ -19,5 +21,5 @@ app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.listen(PORT, () =>
-  console.log(`✅ Server running on http://localhost:${PORT}`)
+  console.log(`✅ Server running on http://localhost:${PORT}`),
 );

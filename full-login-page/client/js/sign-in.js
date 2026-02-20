@@ -1,7 +1,7 @@
 import { CONFIG } from "./config.js";
 import { loginWithGoogleCredential, loginLocal } from "./auth.js";
 import { toast, $ } from "./ui.js";
-import { redirectByRole } from "./auth.js";
+import { redirectByRolelogin } from "./auth.js";
 
 $("#loginBtn").addEventListener("click", async () => {
   try {
@@ -9,7 +9,7 @@ $("#loginBtn").addEventListener("click", async () => {
     const password = $("#password").value;
     const user = await loginLocal(email, password);
     toast("Login successful ✅", "success");
-    window.location.href = redirectByRole(user.role);
+    window.location.href = redirectByRolelogin(user.role);
   } catch (e) {
     toast(e.message || "Login failed", "error");
   }
@@ -29,7 +29,7 @@ s.onload = () => {
       try {
         const user = await loginWithGoogleCredential(response.credential);
         toast("Login successful ✅", "success");
-        window.location.href = redirectByRole(user.role);
+        window.location.href = redirectByRolelogin(user.role);
       } catch (e) {
         toast(e.message || "Google login failed", "error");
       }

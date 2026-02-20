@@ -4,5 +4,5 @@ export const CONFIG = {
 
   // Google Identity Services client id
   GOOGLE_CLIENT_ID:
-    "321776224420-p1fha1oregacp9tcaick0rj3b7jl8mlq.apps.googleusercontent.com",
+    "565487566723-0fer6kk40ap61messkmnohnmisfk4pjq.apps.googleusercontent.com",
 };
