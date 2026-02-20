@@ -6,6 +6,456 @@
   <title>Influencer Dashboard - UdyamTank</title>
   <link rel="stylesheet" href="../assets/css/styles.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Influencer Dashboard Styles */
+    .influencer-dashboard {
+      max-width: 900px;
+      padding: 100px 24px 60px;
+      margin: 0 auto;
+    }
+
+    /* Profile Header */
+    .influencer-header {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .influencer-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .verified-badge {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      width: 24px;
+      height: 24px;
+      background: var(--blue-600);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--card);
+    }
+
+    .verified-badge svg {
+      width: 12px;
+      height: 12px;
+      color: white;
+    }
+
+    .influencer-info {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .influencer-name {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .influencer-handle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 4px 0 8px;
+    }
+
+    .influencer-bio {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin: 0 0 12px;
+    }
+
+    .influencer-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .niche-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(236,72,153,.15), rgba(245,158,11,.1));
+      border: 1px solid rgba(236,72,153,.3);
+      color: #ec4899;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .availability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--green-100), transparent);
+      border: 1px solid var(--green-400);
+      color: var(--green-600);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .availability-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-600);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Section Card */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .stat-change {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green-600);
+      margin-top: 6px;
+    }
+
+    /* Platforms */
+    .platforms-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .platform-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      transition: all 0.2s;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .platform-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .platform-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .platform-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .platform-icon.instagram {
+      background: linear-gradient(135deg, #f59e0b, #ec4899, #8b5cf6);
+      color: white;
+    }
+
+    .platform-icon.youtube {
+      background: #ff0000;
+      color: white;
+    }
+
+    .platform-icon.tiktok {
+      background: #000;
+      color: white;
+    }
+
+    .platform-icon.twitter {
+      background: #1da1f2;
+      color: white;
+    }
+
+    .platform-info {
+      flex: 1;
+    }
+
+    .platform-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 2px;
+    }
+
+    .platform-followers {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Content Preview */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .content-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, rgba(236,72,153,.2), rgba(245,158,11,.15));
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .content-card:hover {
+      transform: scale(1.03);
+    }
+
+    .content-card:hover .content-overlay {
+      opacity: 1;
+    }
+
+    .content-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content-placeholder svg {
+      width: 40px;
+      height: 40px;
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    .content-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .overlay-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .overlay-stat svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Collaboration Panel */
+    .collab-panel {
+      background: linear-gradient(135deg, rgba(236,72,153,.1), rgba(245,158,11,.08));
+      border: 1px solid rgba(236,72,153,.2);
+      border-radius: var(--r);
+      padding: 28px;
+    }
+
+    .services-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--stroke);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .service-tag:hover {
+      border-color: #ec4899;
+      transform: translateY(-2px);
+    }
+
+    .service-tag svg {
+      width: 14px;
+      height: 14px;
+      color: #ec4899;
+    }
+
+    .collab-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .response-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .response-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-600);
+    }
+
+    .hire-btn {
+      padding: 14px 32px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 15px;
+      background: linear-gradient(135deg, #ec4899, #f59e0b);
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hire-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(236,72,153,.4);
+    }
+
+    .hire-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .influencer-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .influencer-name {
+        justify-content: center;
+      }
+      .influencer-meta {
+        justify-content: center;
+      }
+      .collab-footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body class="has-nav">
   <!-- Navigation -->
@@ -43,46 +493,171 @@
     </div>
   </nav>
 
-  <section class="dashboard-wrapper">
-    <div class="dashboard-card">
-      <div class="dash-top">
-        <div>
-          <h2 class="dash-title">Influencer Home</h2>
-          <p id="status" class="dash-sub">Loading...</p>
-        </div>
-        <button id="logout" class="btn logout-btn">Logout</button>
+  <main class="influencer-dashboard">
+    <!-- 1. Profile Header -->
+    <header class="influencer-header">
+      <div class="influencer-avatar">
+        RK
+        <span class="verified-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
       </div>
-
-      <div class="profile-box">
-        <img id="avatar" alt="avatar" style="display:none;" />
-        <div class="profile-meta">
-          <div id="name" class="name">—</div>
-          <div id="email" class="email">—</div>
-          <div id="role" class="provider">—</div>
+      <div class="influencer-info">
+        <h1 class="influencer-name">Riya Kapoor</h1>
+        <p class="influencer-handle">@riyakapoor.tech</p>
+        <p class="influencer-bio">Making tech simple & fun. Reviews, tutorials & startup stories.</p>
+        <div class="influencer-meta">
+          <span class="niche-badge">Tech & Startups</span>
+          <span class="availability-badge">Available for Collaboration</span>
         </div>
       </div>
+    </header>
 
-      <div class="dashboard-grid">
-        <div class="dash-panel">
-          <h3>Influencer tools</h3>
-          <p>Find collaboration deals, track campaigns, and promote startups.</p>
-          <div class="actions">
-            <a class="action" href="#">Collaboration Deals</a>
-            <a class="action" href="#">Campaign Tracker</a>
-            <a class="action" href="#">My Media Kit</a>
+    <!-- 2. Reach Snapshot -->
+    <section class="section-card">
+      <p class="section-label">Reach</p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">524K</div>
+          <div class="stat-label">Total Followers</div>
+          <div class="stat-change">↑ 12% this month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">4.8%</div>
+          <div class="stat-label">Engagement Rate</div>
+          <div class="stat-change">Above average</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">89K</div>
+          <div class="stat-label">Avg. Views/Post</div>
+          <div class="stat-change">↑ 8% vs last month</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Platform Presence -->
+    <section class="section-card">
+      <p class="section-label">Platforms</p>
+      <div class="platforms-row">
+        <div class="platform-card">
+          <div class="platform-icon instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div class="platform-info">
+            <p class="platform-name">Instagram</p>
+            <p class="platform-followers">312K followers</p>
           </div>
         </div>
-
-        <div class="dash-panel">
-          <h3>Quick info</h3>
-          <div class="info">
-            <div class="info-row"><span>Role</span><b>INFLUENCER</b></div>
-            <div class="info-row"><span>Status</span><b>Active</b></div>
+        <div class="platform-card">
+          <div class="platform-icon youtube">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </div>
+          <div class="platform-info">
+            <p class="platform-name">YouTube</p>
+            <p class="platform-followers">178K subscribers</p>
+          </div>
+        </div>
+        <div class="platform-card">
+          <div class="platform-icon twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </div>
+          <div class="platform-info">
+            <p class="platform-name">Twitter</p>
+            <p class="platform-followers">34K followers</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- 4. Content Preview -->
+    <section class="section-card">
+      <p class="section-label">Recent Content</p>
+      <div class="content-grid">
+        <div class="content-card">
+          <div class="content-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          </div>
+          <div class="content-overlay">
+            <span class="overlay-stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              24.5K
+            </span>
+            <span class="overlay-stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              98K
+            </span>
+          </div>
+        </div>
+        <div class="content-card" style="background: linear-gradient(135deg, rgba(139,92,246,.2), rgba(6,182,212,.15));">
+          <div class="content-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
+          </div>
+          <div class="content-overlay">
+            <span class="overlay-stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              31K
+            </span>
+            <span class="overlay-stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              142K
+            </span>
+          </div>
+        </div>
+        <div class="content-card" style="background: linear-gradient(135deg, rgba(34,197,94,.2), rgba(245,158,11,.15));">
+          <div class="content-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          </div>
+          <div class="content-overlay">
+            <span class="overlay-stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              18.2K
+            </span>
+            <span class="overlay-stat">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              76K
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Collaboration Panel -->
+    <section class="collab-panel">
+      <p class="section-label">Services</p>
+      <div class="services-row">
+        <span class="service-tag">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          Sponsored Post
+        </span>
+        <span class="service-tag">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
+          Video Review
+        </span>
+        <span class="service-tag">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Story Mention
+        </span>
+        <span class="service-tag">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Event Hosting
+        </span>
+        <span class="service-tag">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Live Stream
+        </span>
+      </div>
+      <div class="collab-footer">
+        <div class="response-info">
+          <span class="response-dot"></span>
+          Usually responds within 6 hours
+        </div>
+        <button class="hire-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          Hire Me
+        </button>
+      </div>
+    </section>
+  </main>
 
   <div id="toast" class="toast"></div>
   <script type="module" src="../js/theme.js"></script>
