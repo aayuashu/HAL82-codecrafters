@@ -58,11 +58,11 @@ export function redirectByRole(role) {
 }
 export function redirectByRolelogin(role) {
   const map = {
-    INVESTOR: "../client/pages/investor.html",
-    STARTUP: "../client/pages/startup.html",
-    INTERN_SEEKER: "../client/pages/intern.html",
-    INFLUENCER: "../client/pages/influencer.html",
-    ADMIN: "../client/pages/admin.html",
+    INVESTOR: "./investor.html",
+    STARTUP: "./startup.html",
+    INTERN_SEEKER: "./intern.html",
+    INFLUENCER: "./influencer.html",
+    ADMIN: "./admin.html",
   };
-  return map[role] || "../client/pages/intern.html";
+  return map[role] || "./intern.html";
 }

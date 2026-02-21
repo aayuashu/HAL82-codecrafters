@@ -25,23 +25,38 @@ async function load() {
       return;
     }
     if (expected && me.role !== expected) {
-      window.location.href = "./unauthorized.html";
+      window.location.href = "./dashboard.html";
       return;
     }
 
-    document.getElementById("status").textContent = "You are logged in ✅";
-    document.getElementById("name").textContent = me.full_name || "User";
-    document.getElementById("email").textContent = me.email;
-    document.getElementById("role").textContent = `Role: ${me.role}`;
+    const statusEl = document.getElementById("status");
+    const nameEl = document.getElementById("name");
+    const emailEl = document.getElementById("email");
+    const roleEl = document.getElementById("role");
+    const avatarEl = document.getElementById("avatar");
+    const avatarInitialEl = document.getElementById("avatarInitial");
 
-    const img = document.getElementById("avatar");
-    if (me.avatar_url) {
-      img.src = me.avatar_url;
-      img.style.display = "block";
-    } else {
-      img.style.display = "none";
+    if (statusEl) statusEl.textContent = "You are logged in ✅";
+    if (nameEl) nameEl.textContent = me.full_name || "User";
+    if (emailEl) emailEl.textContent = me.email;
+    if (roleEl) roleEl.textContent = `Role: ${me.role}`;
+
+    // Handle avatar image
+    if (avatarEl) {
+      if (me.avatar_url) {
+        avatarEl.src = me.avatar_url;
+        avatarEl.style.display = "block";
+      } else {
+        avatarEl.style.display = "none";
+      }
+    }
+
+    // Handle avatar initial (for new dashboard design)
+    if (avatarInitialEl && me.full_name) {
+      avatarInitialEl.textContent = me.full_name.charAt(0).toUpperCase();
     }
   } catch (e) {
+    console.error("Dashboard load error:", e);
     toast("Session expired. Please login again.", "error");
     clearSession();
     setTimeout(() => (window.location.href = "../index.html"), 700);
