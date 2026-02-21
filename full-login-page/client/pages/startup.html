@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Startup Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+</head>
+
+<body class="dashpro">
+
+  <!-- Top Nav -->
+  <header class="dashpro-nav">
+    <div class="dashpro-nav-inner">
+      <a class="dashpro-brand" href="../index.html">
+        <img src="../../logo.jpg" width="100" height="100" alt="UdyamTank logo">
+        <span>UdyamTank</span>
+      </a>
+
+      <div class="dashpro-actions">
+        <a class="dashpro-link" href="#">Dashboard</a>
+        <button class="dashpro-icon" type="button" aria-label="Toggle theme">🌙</button>
+        <button id="logout" class="btn dashpro-logout" type="button">Logout</button>
+      </div>
+      <div class="actions">
+  
+    </div>
+  </header>
+
+  <main class="dashpro-wrap">
+
+    <!-- Profile Header Card -->
+    <section class="dashpro-hero">
+      <div class="dashpro-hero-left">
+        <div class="dashpro-avatar">
+          <img id="avatar" alt="avatar"/>
+          <span class="dashpro-avatar-fallback">NX</span>
+        </div>
+
+        <div class="dashpro-hero-meta">
+          <h1 class="dashpro-name" id="name">Startup</h1>
+          <p class="dashpro-tagline">Simplifying cross-border payments for emerging markets</p>
+
+          <div class="dashpro-chips">
+            <span class="chip">Fintech</span>
+            <span class="chip chip-active">Early Revenue</span>
+            <span class="chip">Bangalore, India</span>
+            <span class="chip">Founded 2024</span>
+          </div>
+
+          <div class="dashpro-mini">
+            <span id="email">—</span> • <span id="role">—</span>
+            <span class="status-pill" id="status">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashpro-hero-right">
+      <button class="btn btn-ghost" type="button">Edit Profile</button>
+
+      <button class="btn btn-primary" type="button">Share Pitch</button>
+
+      <!-- ✅ NEW BUTTONS -->
+      <button class="btn btn-success" id="hireInternsBtn" type="button">Hire Interns</button>
+      <button class="btn btn-pink" id="hireInfluencersBtn" type="button">Hire Influencers</button>
+
+      
+    </div>
+    </section>
+
+    <!-- Pitch Overview -->
+    <section class="dashpro-section">
+      <div class="dashpro-section-title">
+        <span class="sec-ic">✦</span>
+        <h2>Pitch Overview</h2>
+      </div>
+
+      <div class="overview-grid">
+        <article class="overview-card">
+          <div class="overview-kicker">THE PROBLEM</div>
+          <p>
+            Small businesses in emerging markets lose revenue to high fees and slow processing times
+            when making international payments.
+          </p>
+        </article>
+
+        <article class="overview-card">
+          <div class="overview-kicker">OUR SOLUTION</div>
+          <p>
+            A mobile-first payment platform with instant settlements, lower fees,
+            and secure infrastructure.
+          </p>
+        </article>
+
+        <article class="overview-card">
+          <div class="overview-kicker">TARGET MARKET</div>
+          <p>
+            SMBs and freelancers in SEA and Africa doing cross-border transactions.
+          </p>
+        </article>
+
+        <article class="overview-card highlight">
+          <div class="overview-kicker accent">UNIQUE VALUE PROPOSITION</div>
+          <p>
+            Instant settlements + local payouts + WhatsApp integration. 3x faster onboarding.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="dashpro-section">
+      <div class="dashpro-section-title">
+        <span class="sec-ic">▦</span>
+        <h2>Product Showcase</h2>
+      </div>
+
+      <div class="showcase-card">
+        <div class="showcase-grid">
+          <div class="mock-card">
+            <div class="mock-top"></div>
+            <div class="mock-body"></div>
+            <div class="mock-label">WEB DASHBOARD</div>
+          </div>
+
+          <div class="mock-phone">
+            <div class="phone-notch"></div>
+            <div class="phone-body"></div>
+            <div class="mock-label">MOBILE APP</div>
+          </div>
+
+          <div class="mock-video">
+            <div class="play">▶</div>
+            <div class="mock-label">WATCH DEMO</div>
+          </div>
+        </div>
+
+        <div class="showcase-tags">
+          <span class="tagpill">⚡ Instant Transfers</span>
+          <span class="tagpill">🛡 Bank-Level Security</span>
+          <span class="tagpill">💬 WhatsApp Integration</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Traction & Metrics -->
+    <section class="dashpro-section">
+      <div class="dashpro-section-title">
+        <span class="sec-ic">📈</span>
+        <h2>Traction &amp; Metrics</h2>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-ic blue">👥</div>
+          <div class="metric-num">2,847</div>
+          <div class="metric-label">Active Users</div>
+          <span class="metric-pill green">↑ 32% MoM</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-ic green">↗</div>
+          <div class="metric-num">127%</div>
+          <div class="metric-label">Growth Rate</div>
+          <span class="metric-pill green">↑ YoY Growth</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-ic purple">रु</div>
+          <div class="metric-num">रु44K</div>
+          <div class="metric-label">Monthly Revenue</div>
+          <span class="metric-pill green">↑ 18% MoM</span>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-ic cyan">🛡</div>
+          <div class="metric-num">5</div>
+          <div class="metric-label">Pilot Partners</div>
+          <span class="metric-pill blue">Active Pilots</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- SHARE PITCH (New) -->
+    <section class="dashpro-section">
+      <div class="dashpro-section-title">
+        <span class="sec-ic">✍</span>
+        <h2>Share Your Pitch + Investor Metrics</h2>
+      </div>
+
+      <div class="post-card">
+
+        <div class="form-grid">
+          <div class="fieldbox">
+            <label>Startup Name</label>
+            <input id="s_name" class="field" placeholder="e.g., NexaPay"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Market / Industry</label>
+            <input id="s_market" class="field" placeholder="e.g., Fintech"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Revenue Model</label>
+            <input id="s_revenueModel" class="field" placeholder="e.g., Transaction fees"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Funding Ask</label>
+            <input id="s_funding" class="field" placeholder="e.g., $250k seed"/>
+          </div>
+        </div>
+
+        <div class="fieldbox" style="margin-top:10px;">
+          <label>Description</label>
+          <textarea id="s_description" class="field area" placeholder="Explain the problem + solution in short..."></textarea>
+        </div>
+
+        <div class="fieldbox" style="margin-top:10px;">
+          <label>Team Experience</label>
+          <textarea id="s_teamExp" class="field area" placeholder="Founders, experience, achievements..."></textarea>
+        </div>
+
+        <hr class="soft-hr"/>
+
+        <h3 class="mini-head">Financial + Growth Metrics (for Analysis)</h3>
+
+        <div class="form-grid">
+          <div class="fieldbox">
+            <label>TAM (Total Market) - USD</label>
+            <input id="m_tam" class="field" type="number" placeholder="e.g., 2000000000"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Industry CAGR (%)</label>
+            <input id="m_cagr" class="field" type="number" step="0.1" placeholder="e.g., 18"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Last Month Revenue (USD)</label>
+            <input id="m_lastRevenue" class="field" type="number" placeholder="e.g., 72000"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>This Month Revenue (USD)</label>
+            <input id="m_currentRevenue" class="field" type="number" placeholder="e.g., 84000"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Monthly Expenses (USD)</label>
+            <input id="m_expenses" class="field" type="number" placeholder="e.g., 50000"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Cash in Bank (USD)</label>
+            <input id="m_cash" class="field" type="number" placeholder="e.g., 300000"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Gross Margin (%)</label>
+            <input id="m_grossMargin" class="field" type="number" step="0.1" placeholder="e.g., 70"/>
+          </div>
+
+          <div class="fieldbox">
+            <label>Active Users</label>
+            <input id="m_users" class="field" type="number" placeholder="e.g., 2847"/>
+          </div>
+        </div>
+
+        <div class="post-actions">
+          <button id="publishPitch" class="btn btn-primary" type="button">Publish</button>
+        </div>
+
+        <!-- outputs -->
+        <div id="pitchBoxes"></div>
+        <div id="analysisOut"></div>
+
+      </div>
+    </section>
+      <section id="hireInternsSection" class="dashpro-section">
+    <div class="dashpro-section-title">
+      <h2>Hire Interns</h2>
+    </div>
+    <section id="hireInternsSection" class="dashpro-section">
+  <div class="dashpro-section-title">
+    <span class="sec-ic">👩‍💻</span>
+    <h2>Hire Interns</h2>
+  </div>
+
+  <p class="intern-muted-line">
+    Find talented interns to join your team. Profiles created by interns will appear here automatically.
+  </p>
+
+  <!-- ✅ ADD THIS -->
+  <div id="internCards" class="overview-grid"></div>
+</section>
+  </section>
+
+  <section id="hireInfluencersSection" class="dashpro-section">
+    <div class="dashpro-section-title">
+      <h2>Hire Influencers</h2>
+    </div>
+    <section id="hireInfluencersSection" class="dashpro-section">
+  <div class="dashpro-section-title">
+    <span class="sec-ic">📣</span>
+    <h2>Hire Influencers</h2>
+  </div>
+
+  <p class="intern-muted-line">
+    Influencer profiles created in Influencer Dashboard will appear here automatically.
+  </p>
+
+  <div id="influencerCards" class="overview-grid"></div>
+</section>
+  </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="module" src="../js/startup-page.js"></script>
+</body>
+</html>
